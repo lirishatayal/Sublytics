@@ -31,6 +31,15 @@ Pushes to `main` deploy automatically via GitHub Actions. In the repo settings, 
 
 The Vite `base` is `/Sublytics/` so assets and React Router work under the project URL path.
 
+### Troubleshooting blank page
+
+If the console shows `GET .../src/main.jsx 404`, GitHub Pages is serving **source** files instead of the **built** `dist/` output.
+
+1. **Settings → Pages → Source** must be **GitHub Actions** (not "Deploy from a branch").
+2. Run **Actions → Deploy to GitHub Pages → Run workflow**.
+3. **Settings → Actions → General → Workflow permissions** → **Read and write permissions**.
+4. After deploy, view page source — you should see `/Sublytics/assets/index-....js`, not `/src/main.jsx`.
+
 ## Project Structure
 
 ```

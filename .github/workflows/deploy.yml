@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -32,6 +32,19 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Verify production build
+        run: |
+          if grep -q 'src/main.jsx' dist/index.html; then
+            echo "ERROR: dist/index.html still references dev source. Build failed."
+            exit 1
+          fi
+          if ! grep -q '/Sublytics/assets/' dist/index.html; then
+            echo "ERROR: dist/index.html missing /Sublytics/assets/ bundle paths."
+            exit 1
+          fi
+          echo "Build verified:"
+          grep -E 'script|link rel="stylesheet"' dist/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
