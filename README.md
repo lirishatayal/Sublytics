@@ -21,6 +21,16 @@ npm install
 npm run dev
 ```
 
+Open [http://localhost:5173](http://localhost:5173).
+
+## Deployment (GitHub Pages)
+
+Live site: [https://lirishatayal.github.io/Sublytics/](https://lirishatayal.github.io/Sublytics/)
+
+Pushes to `main` deploy automatically via GitHub Actions. In the repo settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+
+The Vite `base` is `/Sublytics/` so assets and React Router work under the project URL path.
+
 ## Project Structure
 
 ```
